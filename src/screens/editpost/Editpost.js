@@ -17,10 +17,6 @@ export default function Editpost() {
   const { state: post } = location;
 
 
-  const { data, error, optionsData } = useFetch(
-    `https://jsonplaceholder.typicode.com/posts/${post.id}`,
-    "PATCH"
-  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,17 +31,13 @@ export default function Editpost() {
     }
     setValidationError("");
     console.log(modifiedField);
-    optionsData(modifiedField)
   };
 
   useEffect(() => {
     setTitle(post.title)
     setContent(post.body)
-    if (data.length !== 0) {
-      const timer = setTimeout(() => navigate("/"), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [data, navigate,post.title,post.body]);
+    
+  }, [post.title,post.body]);
 
 
   const onTitleChange = (e) => {
@@ -88,16 +80,12 @@ export default function Editpost() {
             {validationError}
           </div>
         )}
-        {data.length !== 0 && (
+        {/* {data.length !== 0 && (
           <div className="alert alert-success" role="alert">
             Post Edited Successfully!
           </div>
-        )}
-        {error && (
-          <div className="alert alert-danger" role="alert">
-            {error}
-          </div>
-        )}
+        )} */}
+        
         <div className="float-end">
           <Appsubmitbutton title="Edit"/>
         </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import "./Createpost.css";
 import { useState,useEffect } from "react";
-import { useFetch } from './../../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import Appsubmitbutton from "../../components/appsubmitbutton/Appsubmitbutton";
 
@@ -12,7 +11,7 @@ export default function Createpost() {
 
   const navigate = useNavigate()
   
-  const {data, error,optionsData} = useFetch('https://jsonplaceholder.typicode.com/posts',"POST")
+  //const {data} = []
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,17 +26,9 @@ export default function Createpost() {
     }
     setValidationError("");
     console.log({ title, body: content, userId:1});
-    optionsData({ title, body: content, userId:1})
   };
 
-  useEffect(() => {
-    if (data.length !== 0) {
-      const timer = setTimeout(() => navigate("/"),3000);
-      return () => clearTimeout(timer)
-    }
-
-  },[data,navigate])
-
+  
   return (
     <div className="outercontainer">
       <form onSubmit={handleSubmit}>
@@ -67,16 +58,11 @@ export default function Createpost() {
             {validationError}
           </div>
         )}
-        {
+        {/* {
           data.length !== 0 && <div className="alert alert-success" role="alert">
             Post Created Successfully!
           </div>
-        }
-        {
-          error && <div className="alert alert-danger" role="alert">
-            {error}
-          </div>
-        }
+        } */}
         <div className="float-end">
           <Appsubmitbutton title="Create"/>
         </div>
