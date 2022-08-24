@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Post.css";
 import { useThemeContext } from './../../hooks/useThemeContext';
-
+import moment from "moment";
 export default function Post({post}) {
 
   const {theme} = useThemeContext()
@@ -21,6 +21,7 @@ export default function Post({post}) {
         <p className="card-text">
           {post.body}
         </p>
+        <small><i>{moment(post.createdAt.toDate()).calendar()}</i></small>
       </div>
     </div>
   );
