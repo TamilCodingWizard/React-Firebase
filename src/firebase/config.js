@@ -7,7 +7,9 @@ import {
 
 const firebaseConfig = {
     // Add your config details here //
+   
 };
+
 
   initializeApp(firebaseConfig)
 
