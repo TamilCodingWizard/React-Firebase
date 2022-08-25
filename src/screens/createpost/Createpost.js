@@ -1,8 +1,10 @@
 import React from "react";
 import "./Createpost.css";
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Appsubmitbutton from "../../components/appsubmitbutton/Appsubmitbutton";
+import { useFirestore } from './../../hooks/useFirestore';
+
 
 export default function Createpost() {
   const [title, setTitle] = useState("");
@@ -13,7 +15,9 @@ export default function Createpost() {
   
   //const {data} = []
 
-  const handleSubmit = (e) => {
+  const {addDocument,error} = useFirestore('posts')
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!title) {
@@ -26,6 +30,9 @@ export default function Createpost() {
     }
     setValidationError("");
     console.log({ title, body: content, userId:1});
+
+    addDocument({ title, body: content, userId:1})
+    navigate('/')
   };
 
   
@@ -63,6 +70,11 @@ export default function Createpost() {
             Post Created Successfully!
           </div>
         } */}
+        {
+          error && <div className="alert alert-danger" role="alert">
+            {error}
+        </div>
+        }
         <div className="float-end">
           <Appsubmitbutton title="Create"/>
         </div>

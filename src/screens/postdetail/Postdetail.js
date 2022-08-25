@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React  from "react";
 import "./Postdetail.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useFetch } from "./../../hooks/useFetch";
 import Appsubmitbutton from "../../components/appsubmitbutton/Appsubmitbutton";
+import { useFirestore } from './../../hooks/useFirestore';
 
 export default function Postdetail() {
   const location = useLocation();
 
   const { state: post } = location;
+
+  const {deleteDocument} = useFirestore('posts')
 
   //const { data } = []
 
@@ -18,6 +21,8 @@ export default function Postdetail() {
   };
 
   const handleDelete = () => {
+    deleteDocument(post.id)
+    navigate('/')
   };
 
   

@@ -1,9 +1,6 @@
 import React,{useEffect} from "react";
 import Post from "../../components/post/Post";
 import "./Home.css";
-import { useFetch } from "./../../hooks/useFetch";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/config";
 import { useFetchCollection } from './../../hooks/useFetchCollection';
 import { useThemeContext } from './../../hooks/useThemeContext';
 
