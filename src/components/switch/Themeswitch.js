@@ -12,10 +12,11 @@ export default function ThemeSwitch() {
   const switchTheme = () => {
     if (theme === 'light') {
         dispatch({type:'DARK'})
-        document.body.style.backgroundColor = '#f2e9e6'
+        document.body.style.backgroundColor = '#e1e5ed'
     } else {
         dispatch({type:'LIGHT'})
-        document.body.style.backgroundColor = '#e1e5ed'
+        document.body.style.backgroundColor = '#f2e9e6'
+        
     }
     console.log(theme)
   }
