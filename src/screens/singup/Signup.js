@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import Appsubmitbutton from "../../components/appsubmitbutton/Appsubmitbutton";
 import "./Signup.css";
+import { useSignup } from './../../hooks/useSignup';
 
 export default function Signup() {
 
@@ -8,6 +9,9 @@ export default function Signup() {
    const [password,setPassword] = useState('')
    const [lastName,setLastName] = useState('')
    const [firstName,setFirstName] = useState('')
+
+   const {signup,error} = useSignup()
+
    const [validationError,setValidationError] = useState(null)
    const handleSubmit = (e) => {
         e.preventDefault()
@@ -31,6 +35,7 @@ export default function Signup() {
         setValidationError(null)
 
         console.log({email,password,lastName,firstName})
+        signup({email,password,lastName,firstName})
    }
 
   return (
@@ -90,6 +95,11 @@ export default function Signup() {
         {
             validationError && <div className="alert alert-danger" role="alert">
                 {validationError}
+            </div>
+        }
+        {
+            error && <div className="alert alert-danger" role="alert">
+                {error}
             </div>
         }
         <div className="float-end">
