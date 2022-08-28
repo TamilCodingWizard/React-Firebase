@@ -7,13 +7,14 @@ import {
 
 const firebaseConfig = {
     // Add your config details here //
-   
+    
 };
 
 
   initializeApp(firebaseConfig)
 
   const db = getFirestore()
+
 
   export {db}
 
