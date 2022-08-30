@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import Appsubmitbutton from "../../components/appsubmitbutton/Appsubmitbutton";
 import "./Signup.css";
-import { useSignup } from './../../hooks/useSignup';
+import { useAuthentication } from './../../hooks/useAuthentication';
 
 export default function Signup() {
 
@@ -10,7 +10,7 @@ export default function Signup() {
    const [lastName,setLastName] = useState('')
    const [firstName,setFirstName] = useState('')
 
-   const {signup,error} = useSignup()
+   const {signup,error} = useAuthentication()
 
    const [validationError,setValidationError] = useState(null)
    const handleSubmit = (e) => {
