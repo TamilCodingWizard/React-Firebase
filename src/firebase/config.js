@@ -8,7 +8,6 @@ import {
 
 const firebaseConfig = {
     // Add your config details here //
-    
 };
 
 

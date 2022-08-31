@@ -31,7 +31,7 @@ export default function Login() {
    }
 
   return (
-    <div className="outercontainer">
+    <div className="formcontainer">
     <h2 className="titleSpacing">Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

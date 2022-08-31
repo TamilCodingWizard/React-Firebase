@@ -39,7 +39,7 @@ export default function Signup() {
    }
 
   return (
-    <div className="outercontainer">
+    <div className="formcontainer">
     <h2 className="titleSpacing">Signup</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
