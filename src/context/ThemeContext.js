@@ -1,5 +1,5 @@
 
-import { createContext } from 'react';
+import { createContext, useEffect } from 'react';
 import { useReducer } from 'react';
 
 
@@ -20,6 +20,14 @@ const ThemesReducer = (state,action) => {
 export const ThemeContextProvider = ({children}) => {
 
     const [state,dispatch] = useReducer(ThemesReducer,{theme : 'light'})
+
+    useEffect(() => {
+        if (state.theme === 'light') {
+            document.body.style.backgroundColor = '#f2e9e6'
+        } else {
+            document.body.style.backgroundColor = '#e1e5ed'
+        }
+    },[state.theme])
     return (
         <ThemeContext.Provider  value={{...state,dispatch}}>
             {children}
