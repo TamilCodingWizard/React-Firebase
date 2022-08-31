@@ -16,7 +16,7 @@ function App() {
 
   const {theme} = useThemeContext()
 
-  const {user} = useAuthContext()
+  const {user,isAuthReady} = useAuthContext()
 
   return (
     <div className={`App ${theme}bg`}>
@@ -24,14 +24,14 @@ function App() {
         <Navbar />
         <Themeswitch/>
         <div className="container">
-          <Routes>
+          {isAuthReady &&<Routes>
             <Route path="/" element={user ? <Home /> : <Navigate to='/login'/>} />
             <Route path="/create" element={user ? <Createpost /> : <Navigate to='/login'/> } />
             <Route path="/post/:id" element={user ? <Postdetail />: <Navigate to='/login'/>} />
             <Route path="/edit/:id" element={user ? <Editpost/> : <Navigate to='/login'/>}/>
             <Route path="/login" element={!user ? <Login/> : <Navigate to='/'/>}/>
             <Route path="/signup" element={!user ?  <Signup/> : <Navigate to='/'/>}/>
-          </Routes>
+          </Routes>}
         </div>
       </BrowserRouter>
     </div>
