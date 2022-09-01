@@ -1,16 +1,19 @@
-import React  from "react";
+import React from "react";
 import "./Postdetail.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useFetch } from "./../../hooks/useFetch";
 import Appsubmitbutton from "../../components/appsubmitbutton/Appsubmitbutton";
-import { useFirestore } from './../../hooks/useFirestore';
+import { useFirestore } from "./../../hooks/useFirestore";
+import { useAuthContext } from "./../../hooks/useAuthContext";
 
 export default function Postdetail() {
   const location = useLocation();
 
   const { state: post } = location;
 
-  const {deleteDocument} = useFirestore('posts')
+  const { user } = useAuthContext();
+
+  const { deleteDocument } = useFirestore("posts");
 
   //const { data } = []
 
@@ -21,11 +24,9 @@ export default function Postdetail() {
   };
 
   const handleDelete = () => {
-    deleteDocument(post.id)
-    navigate('/')
+    deleteDocument(post.id);
+    navigate("/");
   };
-
-  
 
   return (
     <div className="container outer">
@@ -37,12 +38,14 @@ export default function Postdetail() {
             Post Deleted Successfully!
           </div>
         )} */}
-        
-        <div className="float-end">
-          <Appsubmitbutton onClick={handleDelete} title="Delete" />
-          <div className="float-end"></div>
-          <Appsubmitbutton onClick={handleEdit} title="Edit" />
-        </div>
+
+        {(user.uid === post.userId) ? <>
+          <div className="float-end">
+            <Appsubmitbutton onClick={handleDelete} title="Delete" />
+            <div className="float-end"></div>
+            <Appsubmitbutton onClick={handleEdit} title="Edit" />
+          </div>
+        </> : <></>}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Appsubmitbutton from "../../components/appsubmitbutton/Appsubmitbutton";
 import { useFirestore } from './../../hooks/useFirestore';
+import { useAuthContext } from './../../hooks/useAuthContext';
 
 
 export default function Createpost() {
@@ -17,6 +18,8 @@ export default function Createpost() {
 
   const {addDocument,error} = useFirestore('posts')
 
+  const {user} = useAuthContext()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -29,9 +32,8 @@ export default function Createpost() {
       return
     }
     setValidationError("");
-    console.log({ title, body: content, userId:1});
 
-    addDocument({ title, body: content, userId:1})
+    addDocument({ title, body: content, userId:user.uid})
     navigate('/')
   };
 
